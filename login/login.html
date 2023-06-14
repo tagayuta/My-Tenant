@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <header>
+        <h1>My Tenant</h1>
+    </header>
+    <h2>LOGIN/ログイン</h2>
+    <p>内覧予約をする際はログインをお願い致します。</p>
+    <div class="login-page">
+        <div class="form">
+            <form action="Controller.php" method="post">
+                <input type="mail" name="mail" value="" pattern=".+\.[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]" placeholder="mailaddress" required/>
+                <input type="password" name="password" value="" placeholder="password1230" required/>
+                <div><input type="submit" value="ログイン" class="submit"></div>
+            </form>
+
+            <h3>初めてご利用の方</h3>
+            <form action="newUser.html">
+                <input type="submit" value="新規登録" class="submit">
+            </form>
+        </div>
+    </div>
+    <footer>
+        <h4>copyright:ATTOWN</h4>
+    </footer>
+    
+</body>
+</html>

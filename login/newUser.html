@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>新規登録</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+</head>
+<body>
+    <header>
+        <h1>ATTOWN</h1>
+    </header>
+    <h2>新規登録画面</h2>
+    <p>各項目を入力・選択してください。</p>
+    <h3>基本情報</h3>
+    <div class="new-page">
+        <div class="form">
+            <form action="dbNewUser.php" method="post">
+                <p>名前<input type="text" name="name" value="" placeholder="二宮金次郎" required></p>
+                <p>パスワード<input type="password" name="password" value="" placeholder="password1230" required></p>
+                <p>メールアドレス<input type="mail" name="mail" value="" pattern=".+\.[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]" placeholder="abc1230@abc.co.jp" required></p>
+                <p>電話番号<input type="tel" name="tel" value="" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"required placeholder="080-1234-5678" required></p>
+                <p>郵便番号<input type="text" name="yubin" size="10" maxlength="8" placeholder="123-4567" required onKeyUp="AjaxZip3.zip2addr(this,'','address','address');"/></p>
+                <p>住所<input type="text" name="address" size="60" placeholder="東京都世田谷区〇〇町✕✕丁目✕番✕号" required></p>                    
+                <p>性別</p>
+                    <div class="radio">
+                        <label><input type="radio" name="gender" value="M" required>男性</label>
+                        <label><input type="radio" name="gender" value="W">女性</label>
+                    </div>
+                <p>サイズ</p>
+                <div class="radio">
+                    <label><input type="radio" name="size" value="S" required>S</label>
+                    <label><input type="radio" name="size" value="M">M</label>
+                    <label><input type="radio" name="size" value="L">L</label>
+                </div>
+                <input type="submit" value="新規登録" class="submit">
+                <input type="hidden" name="mode" value="post">
+            </form>
+        </div>
+    </div>
+    <footer>
+        <h4>copyright:ATTOWN</h4>
+    </footer>
+    
+</body>
+</html>

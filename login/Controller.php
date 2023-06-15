@@ -16,12 +16,12 @@
     $pass = "";
 
     try{
-        $dbh = new PDO($dsn,$user,$pass);
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db = new PDO($dsn,$user,$pass);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         $SQL = "SELECT * FROM user WHERE mail = ? and pass = ?";
 
-        $stmt = $dbh->prepare($SQL);
+        $stmt = $db->prepare($SQL);
 
         $stmt->bindParam(1,$mail);
         $stmt->bindParam(2,$password);
@@ -29,15 +29,16 @@
         $stmt->execute();
         $row = $stmt->fetch();
 
-
         if(!empty($row)) {
-            //$rowの中身が空でない=ログイン成功
             $_SESSION["user"] = $row;
-            if($row["admin"] == 0){
+            if($row["BL"] == 0) {
+                header("Location: freeze.html");
+                exit();
+            } else if($row["admin"] == 1){
                 //admin=0　管理者
                 header("Location:../admin/adminIndex.php");
                 exit();
-            }else if($row["admin"] == 1){
+            }else if($row["admin"] == 0){
                 //admin=1　ユーザー
                 header("Location:../user/dbProductAll.php");
                 exit();
@@ -52,6 +53,6 @@
         echo $e->getMessage();
         echo "アクセスできません";
     } finally {
-        $dbh = null;
+        $db = null;
     }
 ?>

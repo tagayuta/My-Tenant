@@ -1,0 +1,38 @@
+ <!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+    <title>商品登録</title>
+</head>
+<body>
+    <header>
+        <h1>商品登録ページ</h1>
+    </header>
+    <main>
+        <form action="exeInsertProduct.php" method="post" enctype="multipart/form-data">
+            <label for="">画像は最大4枚まで登録出来ます</label><br>
+            <input type="file" name="image[]" required><br>
+            <input type="file" name="image[]"><br>
+            <input type="file" name="image[]"><br>
+            <input type="file" name="image[]"><br>
+            <label for="">物件名:</label>
+            <input type="text" name="name"><br>
+            <label for="">賃料:</label>
+            <input type="number" name="price" pattern="^[0-9]+$" min="0" require><br>
+            <label for="">敷金:</label>
+            <input type="number" name="s_money" pattern="^[0-9]+$" min="0" require><br>
+            <label for="">礼金:</label>
+            <input type="number" name="r_money" pattern="^[0-9]+$" min="0" require>
+            <p>郵便番号:<input type="text" name="yubin" size="10" maxlength="8" placeholder="123-4567" required onKeyUp="AjaxZip3.zip2addr(this,'','address','address');"/></p>
+            <p>住所<input type="text" name="address" size="60" placeholder="東京都世田谷区〇〇町✕✕丁目✕番✕号" required></p> 
+            <label for="">最寄り駅</label>
+            <input type="text" name="station" required><br>
+            <label for="">検索されるときの単語の設定をして下さい(255文字まで)</label><br>
+            <textarea name="keyword" rows="10" cols="70" maxlength="255"></textarea>
+
+            <input type = "submit" value="確認する">
+        </form>
+    </main>
+</body>
+</html>

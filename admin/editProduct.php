@@ -1,4 +1,4 @@
-<?php 
+<?php
     session_start();
     $product_id = $_POST["product_id"];
 
@@ -41,10 +41,10 @@
             <?php foreach($imgList as $img): ?>
                 <img src="/My Tenant/admin/image/<?= $img["imgPass"] ?>" alt="物件画像">
             <?php endforeach; ?>
-            <p>１枚目：<input type="file" name="img[]"></p>
-            <p>２枚目：<input type="file" name="img[]"></p>
-            <p>３枚目：<input type="file" name="img[]"></p>
-            <p>４枚目：<input type="file" name="img[]"></p>
+            <p>１枚目：<input type="file" name="image[]" required></p>
+            <p>２枚目：<input type="file" name="image[]"></p>
+            <p>３枚目：<input type="file" name="image[]"></p>
+            <p>４枚目：<input type="file" name="image[]"></p>
             <small>※何もアップロードされなければ投稿されている画像は削除されます。</small>
             <p>物件名</p>
             <input type="text" name="name" value="<?= $product["name"] ?>">
@@ -58,6 +58,6 @@
             <input type="submit" value="編集確定">
         <?php endforeach; ?>
     </form>
-    
+
 </body>
 </html>

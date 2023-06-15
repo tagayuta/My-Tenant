@@ -10,6 +10,8 @@
     $user = "root";
     $pass = "";
 
+    var_dump($arr);
+
     try{
         $db = new PDO($dsn,$user,$pass);
         $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -22,11 +24,12 @@
         $stmt->bindParam(5, $product_id);
         $stmt->execute();
 
+        $noImage = "noImage.jpg";
         foreach($arr as $img) {
             if($img == "") {
                 $SQL = "UPDATE images SET imgPass = ? WHERE product_id = ?";
                 $stmt = $db->prepare($SQL);
-                $stmt->bindParam(1, "noImage.jpg");
+                $stmt->bindParam(1, $noImage);
                 $stmt->bindParam(2, $product_id);
             } else {
                 $SQL = "UPDATE images SET imgPass = ? WHERE img_id = ?";

@@ -2,7 +2,6 @@
 
 <?php 
     session_start(); 
-
     $dns = 'mysql:host=localhost; dbname=Tenant; charset=utf8';
     $user = 'root';
     $pass = '';
@@ -13,14 +12,12 @@
 
 
         if(!isset($_POST["search"])){//検索ボタンが押されなかった時
-            $SQL = "SELECT * FROM product p INNER JOIN images i ON p.product_id = i.product_id";
+            $SQL = "SELECT * FROM product";
             $stmt = $db->prepare($SQL);
             $stmt->execute();
             $list = $stmt->fetchAll();
 
             $_SESSION["list"] = $list;
-            var_dump($list);
-
         }else if($_POST["search"] == "keyword"){
             $list = keyword($db);
         }
@@ -123,7 +120,16 @@
                 <div class="product-link">
                     <a href="user/productPickUp.php?id=<?= $product["product_id"] ?>">
                         <h3><?php echo $product["name"] ?></h3>
+                        <?php 
+                        $SQL = "SELECT imgPass FROM images WHERE product_id = ?";
+                        $stmt = $db->prepare($SQL);
+                        $stmt->bindParam(1, $$product["product_id"]);
+                        $stmt->execute();
+                        $imgList = $stmt->fetchAll();
+                        foreach($imgList as $product) {
+                        ?>
                         <img src="/My Tenant/<?= $product["imgPass"]?>" alt="物件画像">
+                        <?php } ?>
                         <p>賃料：<?php echo $product["price"] ?>円</p>
                         <p>敷金：<?php echo $product["s_money"] ?>円</p>
                         <p>礼金：<?php echo $product["r_money"] ?>円</p>

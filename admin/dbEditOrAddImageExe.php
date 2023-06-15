@@ -2,7 +2,6 @@
 
     $product_id = $_POST["product_id"];
     $image = $_FILES["image"]['name'];
-    $num = $_POST["num"];
     move_uploaded_file($_FILES["image"]['tmp_name'], 'image/'. $image);
     $image = "image/".$image;
 

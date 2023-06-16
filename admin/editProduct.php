@@ -19,6 +19,7 @@
         $stmt->bindParam(1, $product_id);
         $stmt->execute();
         $imgList = $stmt->fetchAll();
+        $_SESSION["imgList"] = $imgList;
     } catch(PDOException $e) {
         echo "エラー内容：".$e->getMessage();
         die();
@@ -41,10 +42,10 @@
             <?php foreach($imgList as $img): ?>
                 <img src="/My Tenant/admin/image/<?= $img["imgPass"] ?>" alt="物件画像">
             <?php endforeach; ?>
-            <p>１枚目：<input type="file" name="img[]"></p>
-            <p>２枚目：<input type="file" name="img[]"></p>
-            <p>３枚目：<input type="file" name="img[]"></p>
-            <p>４枚目：<input type="file" name="img[]"></p>
+            <p>１枚目：<input type="file" name="image[]"></p>
+            <p>２枚目：<input type="file" name="image[]"></p>
+            <p>３枚目：<input type="file" name="image[]"></p>
+            <p>４枚目：<input type="file" name="image[]"></p>
             <small>※何もアップロードされなければ投稿されている画像は削除されます。</small>
             <p>物件名</p>
             <input type="text" name="name" value="<?= $product["name"] ?>">

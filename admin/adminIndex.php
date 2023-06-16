@@ -60,18 +60,7 @@
 
     //カテゴリー検索
     function category($dbh){
-        $gender = $_POST["gender"];
-        $category = $_POST["category"]; 
-
-        $SQL = "SELECT * FROM product WHERE gender = ? AND category = ?";
-        $stmt = $dbh->prepare($SQL);
-
-        $stmt->bindParam(1, $gender);
-        $stmt->bindParam(2, $category);
-        $stmt->execute();
-
-        $list = $stmt->fetchAll();
-        return $list;
+        
     }
 ?>
 
@@ -81,14 +70,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('.slider').bxSlider({ slideWidth: 200});
-        });
-    </script>
     <title>管理者ページ</title>
 </head>
 <body>
@@ -108,13 +89,14 @@
     </form>
 
     <a href="insertProduct.html"><button>物件追加</button></a>
+    <a href="userBL.php"><button>ユーザー設定</button></a>
 
     <?php if(!(empty($list) || $list == null)) {?>
         <?php foreach($list as $product): ?>
             <div class="product-link">
-                <a href="user/productPickUp.php?id=<?= $product["product_id"] ?>">
+                <a href="productPickUp.php?id=<?= $product["product_id"] ?>">
                     <h2><?php echo $product["name"] ?></h2>
-                    <div class='slider'>
+                    <div>
                         <?php 
                             try {
                                 $db = new PDO($dsn,$user,$pass);
@@ -156,9 +138,3 @@
     <?php } ?>
 </body>
 </html>
-
-
-
-
-
-

@@ -1,7 +1,4 @@
 <?php
-    session_start();
-    $name = $_SESSION["user"];
-
     $dsn = "mysql:host=localhost;dbname=Tenant;charset=utf8";
     $user = "root";
     $pass = "";
@@ -73,6 +70,7 @@
     <title>管理者ページ</title>
 </head>
 <body>
+    <h2>管理者ページ</h2>
     <!-- キーワード -->
     <form action="adminIndex.php" method="post">
         <input type="text" name="text" required="required" placeholder="キーワード検索">

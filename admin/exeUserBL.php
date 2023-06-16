@@ -14,6 +14,10 @@
         $stmt->bindParam(1, $user_id);
         $stmt->execute();
 
+        session_start();
+        $_SESSION=array();
+        session_destroy();
+        
         header("Location: userBL.php");
         exit();
     } catch(PDOException $e) {

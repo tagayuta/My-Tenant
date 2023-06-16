@@ -21,7 +21,7 @@
     </form>
     <p>or</p>
     <form action="searchUser.php" method="post">
-        <input type="text" name="mail" pattern="^[0-9]+$" min="0" required="required" placeholder="メールアドレス検索">
+        <input type="text" name="mail" required="required" placeholder="メールアドレス検索">
         <input type="submit" value="検索">
     </form>
 

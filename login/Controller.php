@@ -27,20 +27,20 @@
         $stmt->bindParam(2,$password);
 
         $stmt->execute();
-        $row = $stmt->fetch();
-
+        $row = $stmt->fetchAll();
+            
         if(!empty($row)) {
             $_SESSION["user"] = $row;
-            if($row["BL"] == 0) {
+            if($row[0][5] == 0) {
                 header("Location: freeze.html");
                 exit();
-            } else if($row["admin"] == 1){
+            } else if($row[0][6] == 1){
                 //admin=0　管理者
                 header("Location:../admin/adminIndex.php");
                 exit();
-            }else if($row["admin"] == 0){
+            }else if($row[0][6] == 0){
                 //admin=1　ユーザー
-                header("Location:../user/dbProductAll.php");
+                header("Location:../user/ProductAll.php");
                 exit();
             }
         } else {

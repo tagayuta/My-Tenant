@@ -27,7 +27,7 @@
     <title>ブラックリスト</title>
 </head>
 <body>
-    <?php if(!(empty($list) || $list == null)) {?>
+    <?php if(!(empty($BL) || $BL == null)) {?>
         <?php foreach($BL as $list): ?>
             <p>id：<?php echo $list["user_id"] ?></p>
             <p>名前：<?php echo $list["name"] ?></p>

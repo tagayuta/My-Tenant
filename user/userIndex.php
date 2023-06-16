@@ -44,21 +44,6 @@
             <input type="submit" value="価格で絞り込み">
         </form>
     
-        <form action="dbCategorySearch.php" method="post" class="priceSort">
-            <select name="gender"> 
-                <option value="メンズ">メンズ</option>
-                <option value="ウィメンズ">ウィメンズ</option>
-            </select>
-            <select name="category">
-
-                <option value="トップス">トップス</option>
-                <option value="スカート">スカート</option>
-                <option value="パンツ">パンツ</option>
-                <option value="ジャケット/アウター">ジャケット/アウター</option>
-                <option value="シューズ">シューズ</option>
-            </select>
-            <input type="submit" value="検索">
-        </form>
 
         <div class="product-container">
             <?php foreach($list as $product): ?>

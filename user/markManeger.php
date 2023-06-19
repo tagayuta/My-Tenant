@@ -7,6 +7,8 @@
     $user = "root";
     $pass = "";
 
+    echo $mode;
+
     try{
         $db = new PDO($dns, $user, $pass);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

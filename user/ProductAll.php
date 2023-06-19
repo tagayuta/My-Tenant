@@ -8,7 +8,7 @@
         $db = new PDO($dns, $user, $pass);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $SQL = "SELECT product_id, name, price, s_money, r_money, nearStation FROM product";
+        $SQL = "SELECT product_id, name, price, s_money, r_money, nearStation, year FROM product";
         $stmt = $db->prepare($SQL);
         $stmt->execute();
         $list = $stmt->fetchAll();

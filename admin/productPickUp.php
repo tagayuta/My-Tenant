@@ -50,7 +50,7 @@
                 <h2><?php echo $product["name"] ?></h2>
                 <div class='slider'>
                     <?php foreach($imgList as $img) { ?>
-                        <img src="/My Tenant/admin/image/<?= $img["imgPass"]?>" alt="物件画像">
+                        <img src="/My-Tenant/admin/image/<?= $img["imgPass"]?>" alt="物件画像">
                     <?php } ?>
                 </div>
                 <p>賃料：<?php echo $product["price"] ?>円</p>

@@ -11,10 +11,14 @@
     </header>
     <main>
         <form action="exeInsertProduct.php" method="post" enctype="multipart/form-data">
-            <label for="">画像は最大4枚まで登録出来ます</label><br>
+            <p>画像は最大4枚まで登録出来ます</p>
+            <label for="">1枚目(トップ画像):</label>
             <input type="file" name="image[]" required><br>
+            <label for="">2枚目:</label>
             <input type="file" name="image[]"><br>
+            <label for="">3枚目:</label>
             <input type="file" name="image[]"><br>
+            <label for="">4枚目:</label>
             <input type="file" name="image[]"><br>
             <label for="">物件名:</label>
             <input type="text" name="name"><br>
@@ -28,6 +32,8 @@
             <p>住所<input type="text" name="address" size="60" placeholder="東京都世田谷区〇〇町✕✕丁目✕番✕号" required></p> 
             <label for="">最寄り駅</label>
             <input type="text" name="station" required><br>
+            <label for="">建設年</label>
+            <input type="number" name="year" required max="2023" min="1950"><br>
             <label for="">検索ワードの設定をして下さい(255文字まで)</label><br>
             <textarea name="keyword" rows="10" cols="70" maxlength="255"></textarea>
 

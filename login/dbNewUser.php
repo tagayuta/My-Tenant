@@ -10,12 +10,13 @@
     $mail = htmlentities($mail,ENT_QUOTES,"UTF-8");
     $tel = htmlentities($tel,ENT_QUOTES,"UTF-8");
 
-    $password = hash("sha256", $password);
     //改行処理
     $name = str_replace("\r\n","",$name);
     $password = str_replace("\r\n","",$password);
     $mail = str_replace("\r\n","",$mail);
     $tel = str_replace("\r\n","",$tel);
+
+    $password = hash("sha256", $password);
 
     if($_POST["mode"] == "post"){
         new_form();

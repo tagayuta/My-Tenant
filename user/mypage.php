@@ -1,20 +1,20 @@
 <?php
     session_start();
 
-    $dns = 'mysql:host=localhost; dbname=at_town; charset=utf8';
+    $dns = 'mysql:host=localhost; dbname=Tenant; charset=utf8';
     $user = 'root';
     $pass = '';
     
-    $user_id = $_SESSION["id"];
+    $userSource = $_SESSION["user"];
 
     try{
         $db = new PDO($dns, $user, $pass);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $SQL = "SELECT * FROM product INNER JOIN buy_log ON product.id = buy_log.product_id WHERE buy_log.user_id = ?";
+        $SQL = "SELECT * FROM product INNER JOIN mark ON product.product_id = mark.product_id WHERE mark.user_id = ?";
 
         $stmt = $db->prepare($SQL);
-        $stmt->bindParam(1, $user_id);
+        $stmt->bindParam(1, $userSource[0][0]);
         $stmt->execute();
         $list = $stmt->fetchAll();
 
@@ -35,21 +35,18 @@
 </head>
 <body>
     <header class="header">
-        <h1>ATTOWN</h1>
+        <h1>My Tenant</h1>
     </header>
-    <h1>あなたの購入履歴</h1>
+    <h1>あなたのお気に入り</h1>
     <?php foreach($list as $product): ?>
         <div class="cart-container">
             <div class="product-img">
-                <img src="/attown/admin/<?= $product["img0"] ?>" width='1000' height='500'>
+                <img src="/My-Tenant/admin/image/<?= $product["img0"] ?>" width='1000' height='500'>
             </div>
                 
             <div class="product-list">
                 <p>商品名：<?php echo $product["name"] ?></p>
                 <p>価格：<?php echo $product["price"] ?></p>
-                <p>サイズ：<?php echo $product["size"] ?></p>
-                <p>購入数：<?php echo $product["count"] ?></p>
-                <p>購入日：<?php echo $product["date"] ?></p>
             </div>
         </div>
     <?php endforeach; ?>

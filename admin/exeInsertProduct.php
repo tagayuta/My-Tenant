@@ -7,7 +7,11 @@
     $s_money = $_POST["s_money"];
     $r_money = $_POST["r_money"];
     $station = $_POST["station"];
+    $year = $_POST["year"];
     $keyword = $_POST["keyword"];
+
+    $now = intval(date('Y'));
+    $year = $now - $year;
     
     $dsn = "mysql:host=localhost;dbname=Tenant;charset=utf8";
     $user = "root";
@@ -16,7 +20,7 @@
     try {
         $db = new PDO($dsn,$user,$pass);
         $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        $SQL = "INSERT INTO product(name, price, keyword, address, s_money, r_money, nearStation) VALUES(?,?,?,?,?,?,?)";
+        $SQL = "INSERT INTO product(name, price, keyword, address, s_money, r_money, nearStation, year) VALUES(?,?,?,?,?,?,?,?)";
         $stmt = $db->prepare($SQL);
         $stmt->bindParam(1, $name);
         $stmt->bindParam(2, $price);
@@ -25,6 +29,7 @@
         $stmt->bindParam(5, $s_money);
         $stmt->bindParam(6, $r_money);
         $stmt->bindParam(7, $station);
+        $stmt->bindParam(8, $year);
         $stmt->execute();
 
         $SQL = "SELECT product_id FROM product ORDER BY product_id DESC LIMIT 1";

@@ -40,7 +40,7 @@
     <form action="exeEditProduct.php" method="post" enctype="multipart/form-data">
         <?php foreach($list as $product): ?>
             <?php foreach($imgList as $img): ?>
-                <img src="/My Tenant/admin/image/<?= $img["imgPass"] ?>" alt="物件画像">
+                <img src="/My-Tenant/admin/image/<?= $img["imgPass"] ?>" alt="物件画像">
             <?php endforeach; ?>
             <p>１枚目：<input type="file" name="image[]"></p>
             <p>２枚目：<input type="file" name="image[]"></p>

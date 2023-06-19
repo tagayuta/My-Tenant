@@ -13,7 +13,6 @@
             $stmt = $db->prepare($SQL);
             $stmt->execute();
             $list = $stmt->fetchAll();
-            $_SESSION["list"] = $list;
 
         } else if($_POST["search"] == "keyword") {
             $list = keyword($db);
@@ -111,13 +110,16 @@
                             }
                             foreach($imgList as $img) {
                         ?>
-                            <img src="/My Tenant/admin/image/<?= $img["imgPass"]?>" alt="物件画像">
+                            <img src="/My-Tenant/admin/image/<?= $img["imgPass"]?>" alt="物件画像">
                         <?php } ?>
                     </div>
                     <p>賃料：<?php echo $product["price"] ?>円</p>
                     <p>敷金：<?php echo $product["s_money"] ?>円</p>
                     <p>礼金：<?php echo $product["r_money"] ?>円</p>
+                    
                 </a>
+
+                <p>築年数：<?php echo $product["year"]?>年</p>
 
                 <form action="editProduct.php" method="post">
                     <input type="hidden" name="product_id" value="<?= $product["product_id"] ?>">

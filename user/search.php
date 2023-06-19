@@ -1,21 +1,24 @@
 <?php
     session_start();
-    $dns = 'mysql:host=localhost; dbname=at_town; charset=utf8';
+    $dns = 'mysql:host=localhost; dbname=Tenant; charset=utf8';
     $user = 'root';
     $pass = '';
 
-    $text = htmlentities($_POST["text"], ENT_QUOTES, "UTF-8");
+    $keyword = htmlentities($_POST["keyword"], ENT_QUOTES, "UTF-8");
+    $keyword = str_replace("\r\n","",$keyword);
 
     try{
         $db = new PDO($dns, $user, $pass);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $SQL = "SELECT id, name, price, stock, img0, size FROM product WHERE keyword  LIKE ? OR name LIKE ?";
+        $SQL = "SELECT * FROM product WHERE keyword LIKE ? OR name LIKE ? OR address LIKE ? OR nearStation LIKE ?";
 
         $stmt = $db->prepare($SQL);
-        $text = '%' . $text . '%';
-        $stmt->bindParam(1, $text);
-        $stmt->bindParam(2, $text);
+        $keyword = '%' . $keyword . '%';
+        $stmt->bindParam(1, $keyword);
+        $stmt->bindParam(2, $keyword);
+        $stmt->bindParam(3, $keyword);
+        $stmt->bindParam(4, $keyword);
         $stmt->execute();
         $list = $stmt->fetchAll();
 

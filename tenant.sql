@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2023-06-15 10:10:29
+-- 生成日時: 2023-06-19 10:15:34
 -- サーバのバージョン： 10.4.17-MariaDB
 -- PHP のバージョン: 7.4.13
 
@@ -49,7 +49,15 @@ INSERT INTO `images` (`imgPass`, `img_id`, `product_id`) VALUES
 ('OIP.jpg', 53, 19),
 ('usa.png', 54, 19),
 ('noImage.jpg', 55, 19),
-('noImage.jpg', 56, 19);
+('noImage.jpg', 56, 19),
+('usa.png', 57, 20),
+('noImage.jpg', 58, 20),
+('noImage.jpg', 59, 20),
+('noImage.jpg', 60, 20),
+('OIP.jpg', 65, 22),
+('usa.png', 66, 22),
+('usa.png', 67, 22),
+('noImage.jpg', 68, 22);
 
 -- --------------------------------------------------------
 
@@ -59,8 +67,22 @@ INSERT INTO `images` (`imgPass`, `img_id`, `product_id`) VALUES
 
 CREATE TABLE `mark` (
   `mark_id` int(11) NOT NULL,
-  `product_id` int(11) DEFAULT NULL
+  `product_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `mark`
+--
+
+INSERT INTO `mark` (`mark_id`, `product_id`, `user_id`) VALUES
+(38, 18, 1),
+(39, 20, 1),
+(40, 18, 1),
+(41, 17, 2),
+(42, 18, 2),
+(43, 19, 2),
+(44, 20, 2);
 
 -- --------------------------------------------------------
 
@@ -76,17 +98,20 @@ CREATE TABLE `product` (
   `address` varchar(255) NOT NULL,
   `s_money` int(11) DEFAULT 0,
   `r_money` int(11) DEFAULT 0,
-  `nearStation` varchar(20) DEFAULT NULL
+  `nearStation` varchar(20) DEFAULT NULL,
+  `year` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- テーブルのデータのダンプ `product`
 --
 
-INSERT INTO `product` (`product_id`, `name`, `price`, `keyword`, `address`, `s_money`, `r_money`, `nearStation`) VALUES
-(17, 'aaa', 111, 'gggg', '東京都豊島区巣鴨', 222, 333, 'ffff'),
-(18, 'ルネッタ巣鴨', 85000, '巣鴨　JR線', '東京都豊島区巣鴨', 0, 0, '巣鴨駅'),
-(19, 'ｄｄｄ', 111, 'ghhhh', '東京都豊島区巣鴨', 222, 222, 'kkkk');
+INSERT INTO `product` (`product_id`, `name`, `price`, `keyword`, `address`, `s_money`, `r_money`, `nearStation`, `year`) VALUES
+(17, 'aaa', 111, 'gggg', '東京都豊島区巣鴨', 222, 333, 'ffff', 4),
+(18, 'ルネッタ巣鴨', 85000, '巣鴨　JR線', '東京都豊島区巣鴨', 0, 0, '巣鴨駅', 4),
+(19, 'ｄｄｄ', 111, 'ghhhh', '東京都豊島区巣鴨', 222, 222, 'kkkk', 18),
+(20, 'ブリヤン', 79000, 'ブリヤン　池袋　築25年以内　', '東京都板橋区西台', 79000, 0, '池袋', 8),
+(22, 'アトラス', 100000, '千代田線沿い', '東京都千代田区皇居外苑', 200000, 100000, '千代田駅', 9);
 
 -- --------------------------------------------------------
 
@@ -151,19 +176,19 @@ ALTER TABLE `user`
 -- テーブルの AUTO_INCREMENT `images`
 --
 ALTER TABLE `images`
-  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- テーブルの AUTO_INCREMENT `mark`
 --
 ALTER TABLE `mark`
-  MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- テーブルの AUTO_INCREMENT `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- テーブルの AUTO_INCREMENT `user`

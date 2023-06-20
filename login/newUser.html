@@ -11,31 +11,31 @@
         <h1>My Tenant</h1>
     </header>
     <h2>新規登録画面</h2>
-    <p class="comment">各項目を入力・選択してください。</p>
+    <h4 class="comment">各項目を入力・選択してください。</h4>
     <div class="login-page">
         <h2>基本情報</h2>
             <div class="form">
                 <form action="newUser.php" method="post" class="inputs">
                     <div>
-                        <label for="">名前</label>
+                        <label for="">名前</label><br>
                         <input type="text" name="name" placeholder="二宮金次郎" required>
                     </div>
 
                     <div>
-                        <label for="">パスワード</label>
+                        <label for="">パスワード</label><br>
                         <input type="password" name="password" placeholder="password1230" required>
                     </div>
-                    
+
                     <div>
-                        <label for="">メールアドレス</label>
+                        <label for="">メールアドレス</label><br>
                         <input type="mail" name="mail" pattern=".+\.[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]" placeholder="abc1230@abc.co.jp" required>
                     </div>
-                    
+
                     <div>
-                        <label for="">電話番号</label> 
+                        <label for="">電話番号</label><br>
                         <input type="tel" name="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"required placeholder="080-1234-5678" required>
                     </div>
-                    
+
                     <input type="submit" value="新規登録" class="submit">
                     <input type="hidden" name="mode" value="post">
                 </form>

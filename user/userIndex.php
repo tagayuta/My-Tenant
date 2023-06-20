@@ -32,7 +32,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="user.css">
+    <link rel="stylesheet" href="/My-Tenant/user/user.css">
     <title>ユーザーページ</title>
 </head>
 <body>
@@ -47,91 +47,119 @@
         </div>
 
         <!-- キーワード検索用フォーム -->
-        <form action="search.php" method="post">
-            <input type="text" name="keyword">
-            <input type="submit" value="検索">
-        </form>
-
-        <!-- 商品の価格並び順 -->
-        <div class="sortBox">
-            <a href="ProductAll.php">全商品表示</a>
-            <a href="priceSort.php?mode=a">価格が高い順</a>
-            <a href="priceSort.php">価格が安い順</a>
+        <div class="keyword">
+            <form action="search.php" method="post">
+                <input type="text" name="keyword" class="word" placeholder="キーワード">
+                <input type="submit" value="検索" class="submit">
+            </form>
         </div>
 
-        <!-- 複数絞り込み検索用フォーム -->
+        <!-- 商品の価格並び順 -->
         <form action="refinement.php" method="post">
-            <p>賃料</p>
-            <select name="lowPrice">
-            <option value="0">0</option>
-                <option value="50000">5万</option>
-                <option value="55000">5.5万</option>
-                <option value="60000">6万</option>
-                <option value="65000">6.5万</option>
-                <option value="70000">7万</option>
-                <option value="75000">7.5万</option>
-                <option value="80000">8万</option>
-                <option value="85000">8.5万</option>
-                <option value="90000">9万</option>
-                <option value="95000">9.5万</option>
-                <option value="100000">10万</option>
-                <option value="150000">15万</option>
-            </select>
-            <label for="">～</label>
-            <select name="highPrice">
-                <option value="0">0</option>
-                <option value="50000">5万</option>
-                <option value="55000">5.5万</option>
-                <option value="60000">6万</option>
-                <option value="65000">6.5万</option>
-                <option value="70000">7万</option>
-                <option value="75000">7.5万</option>
-                <option value="80000">8万</option>
-                <option value="85000">8.5万</option>
-                <option value="90000">9万</option>
-                <option value="95000">9.5万</option>
-                <option value="100000">10万</option>
-                <option value="150000">15万</option>
-            </select>
-            <br>
+            <div class="refinement">
+                <div class="price">
+                    <p>賃料</p>
+                    <select name="lowPrice">
+                        <option value="0">0万</option>
+                        <option value="50000">5万</option>
+                        <option value="55000">5.5万</option>
+                        <option value="60000">6万</option>
+                        <option value="65000">6.5万</option>
+                        <option value="70000">7万</option>
+                        <option value="75000">7.5万</option>
+                        <option value="80000">8万</option>
+                        <option value="85000">8.5万</option>
+                        <option value="90000">9万</option>
+                        <option value="95000">9.5万</option>
+                        <option value="100000">10万</option>
+                        <option value="150000">15万</option>
+                    </select>
+                    <label for="">～</label>
+                    <select name="highPrice">
+                        <option value="0">0万</option>
+                        <option value="50000">5万</option>
+                        <option value="55000">5.5万</option>
+                        <option value="60000">6万</option>
+                        <option value="65000">6.5万</option>
+                        <option value="70000">7万</option>
+                        <option value="75000">7.5万</option>
+                        <option value="80000">8万</option>
+                        <option value="85000">8.5万</option>
+                        <option value="90000">9万</option>
+                        <option value="95000">9.5万</option>
+                        <option value="100000">10万</option>
+                        <option value="150000">15万</option>
+                    </select>
+                </div>
 
-            <label for="">築年数</label>
-            <select name="year">
-                <option value="5">5年以内</option>
-                <option value="10">10年以内</option>
-                <option value="15">15年以内</option>
-                <option value="20">20年以内</option>
-                <option value="25">25年以内</option>
-                <option value="35">30年以内</option>
-            </select>
-            <br>
+                <div class="year">
+                    <p>築年数</p>
+                    <select name="year">
+                        <option value="5">5年以内</option>
+                        <option value="10">10年以内</option>
+                        <option value="15">15年以内</option>
+                        <option value="20">20年以内</option>
+                        <option value="25">25年以内</option>
+                        <option value="35">30年以内</option>
+                    </select>
+                </div>
 
-            <p>場所</p>
-            <label for="tokyo">東京都</label>
-            <input type="checkbox" name="prefecture[]" value="東京都" id="tokyo">
-            <label for="saitama">埼玉県</label>
-            <input type="checkbox" name="prefecture[]" value="埼玉県" id="saitama">
-            <label for="kanagawa">神奈川県</label>
-            <input type="checkbox" name="prefucture[]" value="神奈川県" id="kanagawa"> 
-            <label for="tiba">千葉県</label>
-            <input type="checkbox" name="prefucture[]" value="千葉県" id="tiba">
-            <label for="gunma">群馬県</label>
-            <input type="checkbox" name="prefucture[]" value="群馬" id="gunma">
-            <label for="ibaragi">茨城県</label>
-            <input type="checkbox" name="prefucture[]" value="茨城県" id="ibaragi">
-            <br>
-            <input type="submit" value="絞り込み">
+                <div class="area">
+                    <h3>物件所在地</h3>
+                    <input type="checkbox" name="prefecture[]" value="東京都" id="tokyo">
+                    <label for="tokyo">東京都</label>
+                    <input type="checkbox" name="prefecture[]" value="埼玉県" id="saitama">
+                    <label for="saitama">埼玉県</label>
+                    <input type="checkbox" name="prefucture[]" value="神奈川県" id="kanagawa">
+                    <label for="kanagawa">神奈川県</label>
+                    <input type="checkbox" name="prefucture[]" value="千葉県" id="tiba">
+                    <label for="tiba">千葉県</label>
+                    <input type="checkbox" name="prefucture[]" value="群馬" id="gunma">
+                    <label for="gunma">群馬県</label>
+                    <input type="checkbox" name="prefucture[]" value="茨城県" id="ibaragi">
+                    <label for="ibaragi">茨城県</label>
+                </div>
+
+                <input type="submit" value="絞り込み" class="submit">
+            </div>
         </form>
-    
+
+        <div class="sortBox">
+            <a href="ProductAll.php">全物件表示</a>
+            <a href="priceSort.php?mode=a">賃料が高い順</a>
+            <a href="priceSort.php">賃料が安い順</a>
+        </div>
+
+
         <?php if(!empty($list)) { ?>
             <div class="product-container">
                 <?php foreach($list as $product): ?>
                     <div class="product-link">
-                        <a href="user/productPickUp.php?id=<?= $product["product_id"] ?>">
+                        <a href="/My-Tenant/user/productPickUp.php?id=<?= $product["product_id"] ?>">
                             <h2><?php echo $product["name"] ?></h2>
                         </a>
-                        
-                        <?php 
+
+                         <!-- お気に入り機能の実施個所 -->
+                         <form action="markManeger.php" method="post" class="form">
+                            <input type="hidden" name="product_id" value="<?= $product["product_id"] ?>">
+                            <input type="hidden" name="user_id" value="<?= $userSource[0][0] ?>">
+                            <!-- 画像の切り替えここから -->
+                            <?php if(!empty($markList)) { ?>
+                                <?php if($markList[$index][0] == $product["product_id"]) { ?>
+                                    <input type="image" src="/My-Tenant/admin/image/rightStar.svg" value="お気に入りに追加" class="like">
+                                    <input type="hidden" name="mode" value="r">
+                                <?php } else { ?>
+                                    <input type="image" src="/My-Tenant/admin/image/darkStar.svg" value="お気に入りに追加" class="like">
+                                    <input type="hidden" name="mode" value="a">
+                                <?php } ?>
+                            <?php } else {?>
+                                <input type="image" src="/My-Tenant/admin/image/darkStar.svg" value="お気に入りに追加" class="like">
+                                <input type="hidden" name="mode" value="a">
+                            <?php } ?>
+                            <!-- 画像の切り替えここまで -->
+                        </form>
+
+                        <?php
                             try {
                                 $db = new PDO($dsn,$user,$pass);
                                 $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -175,7 +203,7 @@
                                         <th>築年数</th>
                                         <td><?php echo $product["year"] ?>年</td>
                                     </tr>
-                                        
+
                                     <tr>
                                         <th>最寄り駅</th>
                                         <td><?php echo $product["nearStation"] ?>駅</td>
@@ -183,37 +211,17 @@
                                 </table>
                             </div>
                         </div>
-
-                        <!-- お気に入り機能の実施個所 -->
-                        <form action="markManeger.php" method="post" class="form">
-                            <input type="hidden" name="product_id" value="<?= $product["product_id"] ?>">                
-                            <input type="hidden" name="user_id" value="<?= $userSource[0][0] ?>">
-                            <!-- 画像の切り替えここから -->
-                            <?php if(!empty($markList)) { ?>
-                                <?php if($markList[$index][0] == $product["product_id"]) { ?>
-                                    <input type="image" src="/My-Tenant/admin/image/rightStar.svg" value="お気に入りに追加" width="30" height="30">
-                                    <input type="hidden" name="mode" value="r">
-                                <?php } else { ?>
-                                    <input type="image" src="/My-Tenant/admin/image/darkStar.svg" value="お気に入りに追加" width="30" height="30">
-                                    <input type="hidden" name="mode" value="a">
-                                <?php } ?>
-                            <?php } else {?>
-                                <input type="image" src="/My-Tenant/admin/image/darkStar.svg" value="お気に入りに追加" width="30" height="30">
-                                <input type="hidden" name="mode" value="a">
-                            <?php } ?>
-                            <!-- 画像の切り替えここまで -->
-                        </form>
                     </div>
                 <?php
                 $index++;
                 if(count($markList)-1 < $index) {
                     $index = count($markList)-1;
                 }
-                endforeach; 
+                endforeach;
                 ?>
             </div>
         <?php } else { ?>
-            <p>検索条件に合う物件はありませんでした。</p>
+            <h2 class="nomatch">検索条件に合う物件はありませんでした。</h2>
         <?php } ?>
     </main>
 

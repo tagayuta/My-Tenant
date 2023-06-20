@@ -70,12 +70,12 @@ main {
 
 .sortBox a {
   font-size: 1.1em;
-  border-bottom: 1px solid rgb(46, 154, 232);
+  border-bottom: 2px solid rgb(46, 154, 232);
 }
 
 .sortBox a:hover {
   transition-duration: 0.5s;
-  border-bottom: 1px solid rgba(231, 136, 63);
+  border-bottom: 2px solid rgba(231, 136, 63);
 }
 
 .price {

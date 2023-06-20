@@ -10,19 +10,13 @@ session_destroy();
 <head>
     <meta charset="UTF-8">
     <title>logout</title>
-    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="/My-Tenant/login/login.css">
 </head>
 <body>
     <header>
-        <h1>My-Tenant</h1>
+        <h1 class="header">My-Tenant</h1>
     </header>
-    <h2>ログアウトしました。</h2>
-    <a href ="../index.php">トップページへ戻る</a>
+    <h2 class="title">ログアウトしました。</h2>
+    <a href ="../index.php"><h3 class="top">トップページへ戻る</h3></a>
 </body>
 </html>
-
-
-
-
-
-

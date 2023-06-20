@@ -1,0 +1,181 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(17, 16, 16);
+}
+
+main {
+  background-color: rgb(249, 250, 251);
+}
+
+.header {
+  background-color: rgba(231, 136, 63);
+  color: #fff;
+  text-align: center;
+  height: 50px;
+  padding-top: 10px;
+}
+
+.loginIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.icon {
+  float: right;
+  display: flex;
+  margin: 15px 25px 0 0;
+}
+
+.icon p {
+  font-weight: bold;
+  padding-top: 5px;
+}
+
+.icon:hover {
+  color: rgba(231, 136, 63);
+}
+
+.submit {
+  display: block;
+  margin: auto;
+  color: #fff;
+  background: rgb(46, 154, 232);
+  border-radius: 20px;
+  width: 150px;
+  height: 40px;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+.submit:hover {
+  background: rgba(231, 136, 63);
+  transition-duration: 0.8s;
+}
+
+.sortBox {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.sortBox a {
+  font-size: 1.1em;
+  border-bottom: 1px solid rgb(46, 154, 232);
+}
+
+.sortBox a:hover {
+  transition-duration: 0.5s;
+  border-bottom: 1px solid rgba(231, 136, 63);
+}
+
+.price {
+  text-align: center;
+  margin-left: 100px;
+}
+
+.price select {
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+.price p {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.year {
+  text-align: center;
+}
+
+.year select {
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+.year p {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  margin-left: 100px;
+}
+
+.area {
+  text-align: center;
+}
+
+.product-link {
+  border: 1px solid #000;
+  width: 700px;
+  margin: auto;
+  margin-bottom: 15px;
+  background-color: #fff;
+}
+
+.product-link h2 {
+  text-align: center;
+  border-bottom: 1px solid #000;
+  color: rgb(48, 48, 246);
+}
+
+.product-link h2:hover {
+  color: rgba(231, 136, 63);
+  transition-duration: 0.8s;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.houseImg img {
+  width: 200px;
+  height: 200px;
+  border: 2px solid rgb(157, 190, 243);
+  margin-top: 5px;
+}
+
+.houseSource {
+  margin-top: 50px;
+}
+
+table {
+  width: 350px;
+}
+
+table, tr, th, td{
+  border: 1px solid #000;
+  border-collapse: collapse;
+}
+
+th {
+  font-weight: normal;
+  text-align-last: left;
+  padding-left: 15px;
+  width: 60px;
+  background-color: rgb(216, 237, 230);
+}
+
+td {
+  text-align: center;
+}
+
+
+footer {
+  background-color: rgba(231, 136, 63);
+  color: #fff;
+  text-align: center;
+  height: 80px;
+}

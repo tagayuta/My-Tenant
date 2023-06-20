@@ -40,7 +40,6 @@
         $SQL .= ")";
     }
 
-
     try{
         $db = new PDO($dns, $user, $pass);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -49,9 +48,11 @@
         $stmt->execute();
         $list = $stmt->fetchAll();
 
+        var_dump($list);
+
         $_SESSION["list"] = $list;
 
-        header('Location: userIndex.php');
+        header('Location: viewIndex.php');
         exit();
 
     } catch(PDOException $e) {

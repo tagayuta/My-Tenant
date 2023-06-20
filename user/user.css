@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  a {
+    text-decoration: none;
+    color: rgb(17, 16, 16);
+  }
+  
+  body {
+    background-color: rgb(249, 250, 251);
+  }
+  
+  .header {
+    background-color: rgba(231, 136, 63);
+    color: #fff;
+    text-align: center;
+    height: 50px;
+    padding-top: 10px;
+  }
+
+  .icon {
+   text-align: right;
+   margin: 30px 20px 0 0;
+  }
+
+  .icon .a-text {
+    font-size: 1.2em;
+    margin-left: 10px;
+  }
+
+  footer {
+    background-color: rgba(231, 136, 63);
+    color: #fff;
+    text-align: center;
+    height: 80px;
+  }

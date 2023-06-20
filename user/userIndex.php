@@ -4,6 +4,7 @@
     $imgList = $_SESSION["imgList"];
     $userSource = $_SESSION["user"];
     $user_id = $userSource[0][0];
+    //お気に入り機能用の添え字の変数
     $index = 0;
 
     $dsn = 'mysql:host=localhost; dbname=Tenant; charset=utf8';
@@ -31,7 +32,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    
+    <link rel="stylesheet" href="user.css">
     <title>ユーザーページ</title>
 </head>
 <body>
@@ -40,22 +41,25 @@
     </header>
 
     <main>
-        <div class="nav">
-            <a href="mypage.php"><img src="/My-Tenant/admin/image/user.svg" alt="アカウント画像" width="30" height="30"></a>
-            <a href ='../login/logout.php'>ログアウト</a>
+        <div class="icon">
+            <a href="mypage.php"><img src="/My-Tenant/icon/user.svg" alt="アカウント画像" width="30" height="30"></a>
+            <a href ='../login/logout.php' class="a-text">ログアウト</a>
         </div>
 
+        <!-- キーワード検索用フォーム -->
         <form action="search.php" method="post">
             <input type="text" name="keyword">
             <input type="submit" value="検索">
         </form>
 
+        <!-- 商品の価格並び順 -->
         <div class="sortBox">
             <a href="ProductAll.php">全商品表示</a>
             <a href="priceSort.php?mode=a">価格が高い順</a>
             <a href="priceSort.php">価格が安い順</a>
         </div>
-        
+
+        <!-- 複数絞り込み検索用フォーム -->
         <form action="refinement.php" method="post">
             <p>賃料</p>
             <select name="lowPrice">
@@ -123,36 +127,68 @@
             <div class="product-container">
                 <?php foreach($list as $product): ?>
                     <div class="product-link">
-                        <a href="productPickUp.php/?id=<?= $product["product_id"] ?>">
-                            <?php 
-                                try {
-                                    $db = new PDO($dsn,$user,$pass);
-                                    $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-                                    $SQL = "SELECT * FROM images WHERE product_id = ?";
-                                    $stmt = $db->prepare($SQL);
-                                    $stmt->bindParam(1, $product["product_id"]);
-                                    $stmt->execute();
-                                    $imageList = $stmt->fetchAll();
-                                } catch(PDOException $e) {
-                                    echo "エラー内容：".$e->getMessage();
-                                } finally {
-                                    $db = null;
-                                }
-                                foreach($imageList as $img) {
-                            ?>
-                                <img src="/My-Tenant/admin/image/<?= $img["imgPass"]?>" alt="商品画像">
-                            <?php } ?>
-                            <p>物件名：<?php echo $product["name"] ?></p>
-                            <p>築年数：<?php echo $product["year"] ?>年</p>
-                            <p>賃料：<?php echo $product["price"] ?>円</p>
-                            <p>敷金：<?php echo $product["s_money"] ?>円</p>
-                            <p>礼金：<?php echo $product["r_money"] ?>円</p>
-                            <p>最寄り駅：<?php echo $product["nearStation"] ?>駅</p>
+                        <a href="user/productPickUp.php?id=<?= $product["product_id"] ?>">
+                            <h2><?php echo $product["name"] ?></h2>
                         </a>
+                        
+                        <?php 
+                            try {
+                                $db = new PDO($dsn,$user,$pass);
+                                $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+                                $SQL = "SELECT * FROM images WHERE product_id = ?";
+                                $stmt = $db->prepare($SQL);
+                                $stmt->bindParam(1, $product["product_id"]);
+                                $stmt->execute();
+                                $imageList = $stmt->fetchAll();
+                            } catch(PDOException $e) {
+                                echo "エラー内容：".$e->getMessage();
+                            } finally {
+                                $db = null;
+                            }
+                        ?>
 
+                        <div class="flex-container">
+                            <div class="houseImg">
+                                <a href="productPickUp.php/?id=<?= $product["product_id"] ?>">
+                                    <img src="/My-Tenant/admin/image/<?= $imgList[0][0]?>" alt="商品画像">
+                                </a>
+                            </div>
+
+
+                            <div class="houseSource">
+                                <table>
+                                    <tr>
+                                        <th>賃料</th>
+                                        <td><?php echo $product["price"] ?>円</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>敷金</th>
+                                        <td><?php echo $product["s_money"] ?>円</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>礼金</th>
+                                        <td><?php echo $product["r_money"] ?>円</td>
+                                    </tr>
+                                    <tr>
+                                        <th>築年数</th>
+                                        <td><?php echo $product["year"] ?>年</td>
+                                    </tr>
+                                        
+                                    <tr>
+                                        <th>最寄り駅</th>
+                                        <td><?php echo $product["nearStation"] ?>駅</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- お気に入り機能の実施個所 -->
                         <form action="markManeger.php" method="post" class="form">
                             <input type="hidden" name="product_id" value="<?= $product["product_id"] ?>">                
                             <input type="hidden" name="user_id" value="<?= $userSource[0][0] ?>">
+                            <!-- 画像の切り替えここから -->
                             <?php if(!empty($markList)) { ?>
                                 <?php if($markList[$index][0] == $product["product_id"]) { ?>
                                     <input type="image" src="/My-Tenant/admin/image/rightStar.svg" value="お気に入りに追加" width="30" height="30">
@@ -165,6 +201,7 @@
                                 <input type="image" src="/My-Tenant/admin/image/darkStar.svg" value="お気に入りに追加" width="30" height="30">
                                 <input type="hidden" name="mode" value="a">
                             <?php } ?>
+                            <!-- 画像の切り替えここまで -->
                         </form>
                     </div>
                 <?php
@@ -180,7 +217,7 @@
         <?php } ?>
     </main>
 
-    <footer class="footer">
+    <footer>
         <h4>copyright: My Tenant</h4>
     </footer>
 </body>

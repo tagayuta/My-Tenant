@@ -14,7 +14,7 @@ session_destroy();
 </head>
 <body>
     <header>
-        <h1>ATTOWN</h1>
+        <h1>My-Tenant</h1>
     </header>
     <h2>ログアウトしました。</h2>
     <a href ="../index.php">トップページへ戻る</a>

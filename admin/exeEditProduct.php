@@ -40,7 +40,7 @@
             }
         }
 
-        header("Location: adminIndex.php");
+        header("Location: ProductAll.php");
         exit();
     } catch(PDOException $e) {
         echo "エラー内容：".$e->getMessage();

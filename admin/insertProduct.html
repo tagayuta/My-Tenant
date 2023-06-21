@@ -2,43 +2,60 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/My-Tenant/admin/root.css">
     <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
     <title>商品登録</title>
 </head>
 <body>
     <header>
-        <h1>商品登録ページ</h1>
+        <h1 class="header">My Tenant</h1>
+        <h1 class="title">商品登録ページ</h1>
     </header>
-    <main>
-        <form action="exeInsertProduct.php" method="post" enctype="multipart/form-data">
-            <p>画像は最大4枚まで登録出来ます</p>
-            <label for="">1枚目(トップ画像):</label>
-            <input type="file" name="image[]" required><br>
-            <label for="">2枚目:</label>
-            <input type="file" name="image[]"><br>
-            <label for="">3枚目:</label>
-            <input type="file" name="image[]"><br>
-            <label for="">4枚目:</label>
-            <input type="file" name="image[]"><br>
-            <label for="">物件名:</label>
-            <input type="text" name="name"><br>
-            <label for="">賃料:</label>
-            <input type="number" name="price" pattern="^[0-9]+$" min="0" require><br>
-            <label for="">敷金:</label>
-            <input type="number" name="s_money" pattern="^[0-9]+$" min="0" require><br>
-            <label for="">礼金:</label>
-            <input type="number" name="r_money" pattern="^[0-9]+$" min="0" require>
-            <p>郵便番号:<input type="text" name="yubin" size="10" maxlength="8" placeholder="123-4567" required onKeyUp="AjaxZip3.zip2addr(this,'','address','address');"/></p>
-            <p>住所<input type="text" name="address" size="60" placeholder="東京都世田谷区〇〇町✕✕丁目✕番✕号" required></p> 
-            <label for="">最寄り駅</label>
-            <input type="text" name="station" required><br>
-            <label for="">建設年</label>
-            <input type="number" name="year" required max="2023" min="1950"><br>
-            <label for="">検索ワードの設定をして下さい(255文字まで)</label><br>
-            <textarea name="keyword" rows="10" cols="70" maxlength="255"></textarea>
 
-            <input type = "submit" value="確認する">
+    <main>
+        <form action="exeInsertProduct.php" method="post" enctype="multipart/form-data" class="editform">
+            <h3>画像は最大4枚まで登録出来ます</h3>
+            <div class="imgupload">
+                <label for="">1枚目(トップ画像):</label><br>
+                <input type="file" name="image[]" required><br>
+                <label for="">2枚目:</label><br>
+                <input type="file" name="image[]"><br>
+                <label for="">3枚目:</label><br>
+                <input type="file" name="image[]"><br>
+                <label for="">4枚目:</label><br>
+                <input type="file" name="image[]"><br>
+            </div>
+
+            <div class="inserInputs">
+                <div class="small">
+                    <label for="">物件名</label><br>
+                    <input type="text" name="name"><br>
+                    <label for="">賃料</label><br>
+                    <input type="number" name="price" pattern="^[0-9]+$" min="0" require><br>
+                    <label for="">敷金</label><br>
+                    <input type="number" name="s_money" pattern="^[0-9]+$" min="0" require><br>
+                    <label for="">礼金</label><br>
+                    <input type="number" name="r_money" pattern="^[0-9]+$" min="0" require>
+                </div>
+                
+                <div class="post">
+                    <label for="">郵便番号(自動検索されます)</label><br>
+                    <input type="text" name="yubin" size="10" maxlength="8" placeholder="123-4567" required onKeyUp="AjaxZip3.zip2addr(this,'','address','address');"/><br>
+                    <label for="">住所</label><br>
+                    <input type="text" name="address" size="60" placeholder="東京都世田谷区〇〇町✕✕丁目✕番✕号" required><br> 
+                    <label for="">最寄り駅</label><br>
+                    <input type="text" name="station" required><br>
+                    <label for="">建設年</label><br>
+                    <input type="number" name="year" required max="2023" min="1950"><br>
+                    <label for="">検索ワードの設定をして下さい(255文字まで)</label><br>
+                    <textarea name="keyword" rows="10" cols="70" maxlength="255" class="textarea"></textarea>
+                </div>
+
+            </div>
+        
+            <input type = "submit" value="登録する" class="submit">
         </form>
     </main>
+
 </body>
 </html>

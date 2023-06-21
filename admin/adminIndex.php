@@ -1,97 +1,121 @@
 <?php
-    $dsn = "mysql:host=localhost;dbname=Tenant;charset=utf8";
-    $user = "root";
-    $pass = "";
-    
-    try{
-        $db = new PDO($dsn,$user,$pass);
-        $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    session_start();
+    $list = $_SESSION["list"];
 
-        if(!isset($_POST["search"])) {
-            //検索ボタンが押されなかった時
-            $SQL = "SELECT * FROM product ORDER BY product_id DESC";
-            $stmt = $db->prepare($SQL);
-            $stmt->execute();
-            $list = $stmt->fetchAll();
-
-        } else if($_POST["search"] == "keyword") {
-            $list = keyword($db);
-        } else if($_POST["search"] == "price") {
-            $list = price($db);
-        } else if($_POST["search"] == "category") {
-            $list = category($db);
-        }
-    } catch(PDOException $e) {
-        echo "エラー内容：".$e->getMessage();
-    } finally {
-        $db = null;
-    }
-
-    //キーワード検索
-    function keyword($db){
-        $text = $_POST["text"];
-        $SQL = "SELECT * FROM product WHERE keyWord LIKE ? OR name LIKE ?";
-        $stmt = $db->prepare($SQL);
-        $text = '%' . $text . '%';
-        $stmt->bindParam(1, $text);
-        $stmt->bindParam(2, $text);
-        $stmt->execute();
-        $list = $stmt->fetchAll();
-        return $list;
-    }
-
-    //価格検索
-    function price($db){
-        $low = $_POST["low"];
-        $high= $_POST["high"];
-        $SQL = "SELECT * FROM product WHERE price BETWEEN ? AND ?";
-        $stmt = $db->prepare($SQL);
-        $stmt->bindParam(1, $low);
-        $stmt->bindParam(2, $high);
-        $stmt->execute();
-
-        $list = $stmt->fetchAll();
-        return $list;
-    }
-
-    //カテゴリー検索
-    function category($dbh){
-        
-    }
+    $dsn = 'mysql:host=localhost; dbname=Tenant; charset=utf8';
+    $user = 'root';
+    $pass = '';
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/My-Tenant/admin/root.css">
     <title>管理者ページ</title>
 </head>
 <body>
-    <h2>管理者ページ</h2>
+
+<header>
+    <h1 class="header">My Tenant</h1>
+</header>
+    <h1 class="admin">管理者ページ</h1>
     <!-- キーワード -->
-    <form action="adminIndex.php" method="post">
-        <input type="text" name="text" required="required" placeholder="キーワード検索">
-        <input type="hidden" name="search" value="keyword">
-        <input type="submit" value="検索">
+    <div class="keyword">
+        <form action="search.php" method="post">
+            <input type="text" name="keyword" required="required" placeholder="キーワード検索" class="word">
+            <input type="submit" value="検索" class="submit">
+        </form>
+    </div>
+    
+
+    <form action="refinement.php" method="post">
+        <div class="refinement">
+            <div class="price">
+                <p>賃料</p>
+                <select name="lowPrice">
+                    <option value="0">0万</option>
+                    <option value="50000">5万</option>
+                    <option value="55000">5.5万</option>
+                    <option value="60000">6万</option>
+                    <option value="65000">6.5万</option>
+                    <option value="70000">7万</option>
+                    <option value="75000">7.5万</option>
+                    <option value="80000">8万</option>
+                    <option value="85000">8.5万</option>
+                    <option value="90000">9万</option>
+                    <option value="95000">9.5万</option>
+                    <option value="100000">10万</option>
+                    <option value="150000">15万</option>
+                </select>
+                <label for="">～</label>
+                <select name="highPrice">
+                    <option value="0">0万</option>
+                    <option value="50000">5万</option>
+                    <option value="55000">5.5万</option>
+                    <option value="60000">6万</option>
+                    <option value="65000">6.5万</option>
+                    <option value="70000">7万</option>
+                    <option value="75000">7.5万</option>
+                    <option value="80000">8万</option>
+                    <option value="85000">8.5万</option>
+                    <option value="90000">9万</option>
+                    <option value="95000">9.5万</option>
+                    <option value="100000">10万</option>
+                    <option value="150000">15万</option>
+                </select>
+            </div>
+
+            <div class="year">
+                <p>築年数</p>
+                <select name="year">
+                    <option value="5">5年以内</option>
+                    <option value="10">10年以内</option>
+                    <option value="15">15年以内</option>
+                    <option value="20">20年以内</option>
+                    <option value="25">25年以内</option>
+                    <option value="35">30年以内</option>
+                </select>
+            </div>
+
+            <div class="area">
+                <h3>物件所在地</h3>
+                <input type="checkbox" name="prefecture[]" value="東京都" id="tokyo">
+                <label for="tokyo">東京都</label>
+                <input type="checkbox" name="prefecture[]" value="埼玉県" id="saitama">
+                <label for="saitama">埼玉県</label>
+                <input type="checkbox" name="prefucture[]" value="神奈川県" id="kanagawa">
+                <label for="kanagawa">神奈川県</label>
+                <input type="checkbox" name="prefucture[]" value="千葉県" id="tiba">
+                <label for="tiba">千葉県</label>
+                <input type="checkbox" name="prefucture[]" value="群馬" id="gunma">
+                <label for="gunma">群馬県</label>
+                <input type="checkbox" name="prefucture[]" value="茨城県" id="ibaragi">
+                <label for="ibaragi">茨城県</label>
+            </div>
+
+            <input type="submit" value="絞り込み" class="submit">
+        </div>
     </form>
 
-    <!-- 価格検索 -->
-    <form action="adminIndex.php" method="post">
-        <input type="number" name="low" placeholder="最小価格" pattern="^[0-9]+$" min="300">
-        <input type="number" name="high" placeholder="最高価格" pattern="^[0-9]+$" min="301">
-        <input type="hidden" name="search" value="price">
-        <input type="submit" value="価格で絞り込み">
-    </form>
+    <div class="sortBox">
+        <a href="ProductAll.php">全物件表示</a>
+        <a href="priceSort.php?mode=a">賃料が高い順</a>
+        <a href="priceSort.php">賃料が安い順</a>
+    </div>  
 
-    <a href="insertProduct.html"><button>物件追加</button></a>
-    <a href="userBL.php"><button>ユーザー設定</button></a>
+    <div class="add">
+        <a href="insertProduct.html" class="addHouse">物件追加</a>
+        <a href="userBL.php" class="black">ユーザーBL設定</a>
+    </div>
+    
 
     <?php if(!(empty($list) || $list == null)) {?>
+        <div class="product-container">
         <?php foreach($list as $product): ?>
             <div class="product-link">
                 <a href="productPickUp.php?id=<?= $product["product_id"] ?>">
                     <h2><?php echo $product["name"] ?></h2>
-                    <div>
                         <?php 
                             try {
                                 $db = new PDO($dsn,$user,$pass);
@@ -106,33 +130,62 @@
                             } finally {
                                 $db = null;
                             }
-                            foreach($imgList as $img) {
                         ?>
-                            <img src="/My-Tenant/admin/image/<?= $img["imgPass"]?>" alt="物件画像">
-                        <?php } ?>
+                    <div class="flex-container">
+                        <div class="houseImg">
+                            <a href="productPickUp.php/?id=<?= $product["product_id"] ?>">
+                                <img src="/My-Tenant/admin/image/<?= $imgList[0][0]?>" alt="商品画像">
+                            </a>
+                        </div>
+
+
+                        <div class="houseSource">
+                            <table>
+                                <tr>
+                                    <th>賃料</th>
+                                    <td><?php echo $product["price"] ?>円</td>
+                                </tr>
+
+                                <tr>
+                                    <th>敷金</th>
+                                    <td><?php echo $product["s_money"] ?>円</td>
+                                </tr>
+
+                                <tr>
+                                    <th>礼金</th>
+                                    <td><?php echo $product["r_money"] ?>円</td>
+                                </tr>
+                                <tr>
+                                    <th>築年数</th>
+                                    <td><?php echo $product["year"] ?>年</td>
+                                </tr>
+
+                                <tr>
+                                    <th>最寄り駅</th>
+                                    <td><?php echo $product["nearStation"] ?>駅</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                    <p>賃料：<?php echo $product["price"] ?>円</p>
-                    <p>敷金：<?php echo $product["s_money"] ?>円</p>
-                    <p>礼金：<?php echo $product["r_money"] ?>円</p>
-                    
-                </a>
 
-                <p>築年数：<?php echo $product["year"]?>年</p>
+                    <div class="btnContainer">
+                        <form action="editProduct.php" method="post" class="edit">
+                            <input type="hidden" name="product_id" value="<?= $product["product_id"] ?>">
+                            <input type="submit" value="編集">
+                        </form>
 
-                <form action="editProduct.php" method="post">
-                    <input type="hidden" name="product_id" value="<?= $product["product_id"] ?>">
-                    <input type="submit" value="編集">
-                </form>
-
-                <form action="deleteProduct.php" method="post">
-                    <input type="hidden" name="product_id" value="<?= $product["product_id"] ?>">
-                    <input type="submit" value="削除">
-                </form>
+                        <form action="deleteProduct.php" method="post" class="delete">
+                            <input type="hidden" name="product_id" value="<?= $product["product_id"] ?>">
+                            <input type="submit" value="削除">
+                        </form>
+                    </div>
+                
             </div>
-            <hr>
         <?php endforeach; ?>
     <?php } else{ ?>
         <p>検索条件に一致する商品はありませんでした</p>
     <?php } ?>
+        </div>
+        
 </body>
 </html>

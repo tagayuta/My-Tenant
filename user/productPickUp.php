@@ -94,10 +94,5 @@
         <h3 class="key">物件詳細キーワード</h3>
         <p class="list"><?php echo $list[0][3]?></p>
     </div>
-
-
-
-
-
 </body>
 </html>

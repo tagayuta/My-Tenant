@@ -31,6 +31,10 @@ h2 {
     font-weight: bold;
 }
 
+.login-form {
+    text-align: center;
+}
+
 .login-page {
     border: 1px solid #000;
     border-radius: 8px;
@@ -47,20 +51,27 @@ h2 {
 
 .inputs div {
     text-align: center;
-    margin: 10px 0;
 }
 
 .inputs div br {
     display: block;
     content: "";
-    margin: 10px;
+    margin: 5px;
 }
 
 .inputs input {
     width: 300px;
     height: 40px;
     border-radius: 8px;
-    margin: auto;
+    margin: 10px auto;
+
+}
+
+.login-inputs input{
+    width: 300px;
+    height: 40px;
+    border-radius: 8px;
+    margin: 20px 0;
 }
 
 .submit {
@@ -70,7 +81,6 @@ h2 {
     font-size: 1.2em;
     text-align: center;
     margin-top: 10px;
-
 }
 
 .submit:hover {

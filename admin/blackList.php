@@ -22,25 +22,45 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/My-Tenant/admin/root.css">
     <title>ブラックリスト</title>
 </head>
 <body>
+
+    <header>
+        <h1 class="header">My Tenant</h1>
+    </header>
     <?php if(!(empty($BL) || $BL == null)) {?>
         <?php foreach($BL as $list): ?>
-            <p>id：<?php echo $list["user_id"] ?></p>
-            <p>名前：<?php echo $list["name"] ?></p>
-            <p>メールアドレス：<?php echo $list["mail"] ?></p>
-            <p>電話番号：<?php echo $list["tel"] ?></p>
+            <div class="blTable">
+                <table>
+                    <tr>
+                        <th>id</th>
+                        <td><?php echo $list["user_id"] ?></td>
+                    </tr>
+                    <tr>
+                        <th>名前</th>
+                        <td><?php echo $list["name"] ?></td>
+                    </tr>
+                    <tr>
+                        <th>メールアドレス</th>
+                        <td><?php echo $list["mail"] ?></td>
+                    </tr>
+                    <tr>
+                        <th>電話番号</th>
+                        <td><?php echo $list["tel"] ?></td>
+                    </tr>
+                </table>
+            </div>
+            
             <form action="unLockBL.php" method="post">
                 <input type="hidden" name="user_id" value="<?= $list["user_id"] ?>">
-                <input type="submit" value="BL解除">
+                <input type="submit" value="BL解除" class="submit">
             </form>
         <?php endforeach; ?>
     <?php } else {?>
-        <p>ブラックリストに登録されているユーザはいません。</p>
-        <a href="adminIndex.php">→管理者トップページ</a>
+        <h2 class="noBL">ブラックリストに登録されているユーザはいません。</h2>
+        <div class="top"><a href="ProductAll.php" >→管理者トップページ</a></div>
     <?php } ?>
 </body>
 </html>

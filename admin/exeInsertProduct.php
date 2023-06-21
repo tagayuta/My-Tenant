@@ -53,7 +53,7 @@
             $stmt->execute();
         }
 
-        header("Location: adminIndex.php");
+        header("Location: ProductAll.php");
     } catch(PDOException $e) {
         echo "エラー内容：".$e->getMessage();
         die();

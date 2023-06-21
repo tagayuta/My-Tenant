@@ -36,7 +36,7 @@
                 exit();
             } else if($row[0][6] == 1){
                 //admin=0　管理者
-                header("Location:../admin/adminIndex.php");
+                header("Location:../admin/ProductAll.php");
                 exit();
             }else if($row[0][6] == 0){
                 //admin=1　ユーザー

@@ -38,6 +38,7 @@
 <body>
     <header>
         <h1 class="header">My Tenant</h1>
+        <h3><?php echo $userSource[0][1] ?>さん、ログイン中</h3>
     </header>
 
     <main>

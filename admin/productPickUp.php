@@ -1,27 +1,23 @@
 <?php
     $product_id = $_GET["id"];
 
-    $dsn = "mysql:host=localhost;dbname=Tenant;charset=utf8";
-    $user = "root";
-    $pass = "";
+    $dns = 'mysql:host=localhost; dbname=Tenant; charset=utf8';
+    $user = 'root';
+    $pass = '';
 
-    try {
-        $db = new PDO($dsn,$user,$pass);
-        $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    try{
+        $db = new PDO($dns, $user, $pass);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $SQL = "SELECT * FROM product WHERE product_id = ?";
+        $SQL = "SELECT * FROM product INNER JOIN images ON product.product_id = images.product_id WHERE product.product_id = ?";
+
         $stmt = $db->prepare($SQL);
         $stmt->bindParam(1, $product_id);
         $stmt->execute();
         $list = $stmt->fetchAll();
-
-        $SQL = "SELECT * FROM images WHERE product_id = ?";
-        $stmt = $db->prepare($SQL);
-        $stmt->bindParam(1, $product_id);
-        $stmt->execute();
-        $imgList = $stmt->fetchAll();
     } catch(PDOException $e) {
-        echo "エラー内容：".$e->getMessage();
+        echo "アクセスできませんでした";
+        echo $e->getMessage();
     } finally {
         $db = null;
     }
@@ -31,44 +27,65 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物件詳細</title>
+    <link rel="stylesheet" href="/My-Tenant/user/user.css">
+    <link rel="stylesheet" href="/My-Tenant/admin/root.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
     <script>
-        $(document).ready(function(){
-            $('.slider').bxSlider({ slideWidth: 200});
-        });
+    $(document).ready(function(){
+        $('.slider').bxSlider({ slideWidth: 200});
+    });
     </script>
-    <title>物件詳細</title>
 </head>
 <body>
-    <?php foreach($list as $product): ?>
-        <div class="product-link">
-            <a href="productPickUp.php?id=<?= $product["product_id"] ?>">
-                <h2><?php echo $product["name"] ?></h2>
-                <div class='slider'>
-                    <?php foreach($imgList as $img) { ?>
-                        <img src="/My-Tenant/admin/image/<?= $img["imgPass"]?>" alt="物件画像">
-                    <?php } ?>
-                </div>
-                <p>賃料：<?php echo $product["price"] ?>円</p>
-                <p>敷金：<?php echo $product["s_money"] ?>円</p>
-                <p>礼金：<?php echo $product["r_money"] ?>円</p>
-            </a>
+    <header>
+        <h1 class="header">My Tenant</h1>
+    </header>
 
-            <form action="editProduct.php" method="post">
-                <input type="hidden" name="product_id" value="<?= $product["product_id"] ?>">
-                <input type="submit" value="編集">
-            </form>
+    <h1 class="title">物件詳細</h1>
 
-            <form action="deleteProduct.php" method="post">
-                <input type="hidden" name="product_id" value="<?= $product["product_id"] ?>">
-                <input type="submit" value="削除">
-            </form>
+    <div class="container">
+        <h1 class="houseName"><?php echo $list[0][1] ?></h1>
+
+        <div class="parent">
+            <div class='slider'>
+                <?php foreach($list as $product): ?>
+                <img src="/My-Tenant/admin/image/<?= $product["imgPass"] ?>">
+                <?php endforeach; ?>
+            </div>
+
+            <div class="houseSource">
+                <table>
+                    <tr>
+                        <th>賃料</th>
+                        <td><?php echo $list[0][2] ?>円</td>
+                    </tr>
+                    <tr>
+                        <th>築年数</th>
+                        <td><?php echo $list[0][8] ?>年</td>
+                    </tr>
+                    <tr>
+                        <th>敷金</th>
+                        <td><?php echo $list[0][4] ?>円</td>
+                    </tr>
+
+                    <tr>
+                        <th>礼金</th>
+                        <td><?php echo $list[0][5] ?>円</td>
+                    </tr>
+                    <tr>
+                        <th>最寄り駅</th>
+                        <td><?php echo $list[0][7] ?>駅</td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <hr>
-    <?php endforeach; ?>
+        <h3 class="key">物件詳細キーワード</h3>
+        <p class="list"><?php echo $list[0][3]?></p>
+    </div>
 </body>
 </html>

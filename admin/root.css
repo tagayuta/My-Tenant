@@ -1,0 +1,406 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(17, 16, 16);
+}
+
+body {
+    background-color: rgb(249, 250, 251);
+}
+
+.header {
+    background-color: rgba(231, 136, 63);
+    color: #fff;
+    text-align: center;
+    height: 50px;
+    padding-top: 10px;
+}
+
+.admin {
+    text-align: center;
+   margin: 20px 0;
+}
+
+.keyword {
+    text-align: center;
+}
+
+.keyword .word {
+width: 300px;
+border-radius: 20px;
+height: 30px;
+}
+
+.submit {
+    display: block;
+    margin: 15px auto 30px auto;
+    color: #fff;
+    background: rgb(46, 154, 232);
+    border-radius: 20px;
+    width: 150px;
+    height: 40px;
+    font-size: 1.2em;
+}
+
+.submit:hover {
+    background: rgba(231, 136, 63);
+    transition-duration: 0.8s;
+}
+
+.sortBox {
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.sortBox a {
+    font-size: 1.1em;
+    border-bottom: 2px solid rgb(46, 154, 232);
+}
+
+.sortBox a:hover {
+    transition-duration: 0.5s;
+    border-bottom: 2px solid rgba(231, 136, 63);
+}
+
+.price {
+    text-align: center;
+}
+
+.price select {
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.price p {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.year {
+    text-align: center;
+}
+
+.year select {
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.year p {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.area {
+    text-align: center;
+}
+
+.add {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.addHouse {
+    background-color: rgba(231, 136, 63);
+    margin-right: 20px;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 1.2em;
+    width: 100px;
+    text-align: center;
+    border: 2px solid #000;
+}
+
+.black {
+    background-color: rgb(22, 22, 22);
+    margin-left: 20px;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 1.2em;
+    width: 150px;
+    text-align: center;
+    border: 2px solid #000;
+}
+
+.product-link {
+    border: 1px solid #000;
+    width: 700px;
+    margin: auto;
+    margin-bottom: 15px;
+    background-color: #fff;
+  }
+
+  .product-link h2 {
+    text-align: center;
+    border-bottom: 1px solid #000;
+    color: rgb(48, 48, 246);
+  }
+
+  .product-link h2:hover {
+    color: rgba(231, 136, 63);
+    transition-duration: 0.8s;
+  }
+
+  .flex-container {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .houseImg img {
+    width: 200px;
+    height: 200px;
+    border: 2px solid rgb(157, 190, 243);
+    margin-top: 5px;
+  }
+
+  .houseSource {
+    margin-top: 50px;
+    width: 400px;
+  }
+
+  table {
+    width: 400px;
+  }
+
+  table, tr, th, td{
+    border: 1px solid #000;
+    border-collapse: collapse;
+  }
+
+  th {
+    font-weight: normal;
+    text-align-last: left;
+    padding-left: 15px;
+    width: 70px;
+    background-color: rgb(216, 237, 230);
+  }
+
+  td {
+    text-align: center;
+  }
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.edit {
+    margin-right: 10px;
+}
+
+.edit input {
+    width: 80px;
+    background: rgba(231, 136, 63);
+    color: #fff;
+    border-radius: 20px;
+    font-size: 1.1em;
+}
+
+.delete {
+    margin-left: 10px;
+}
+
+.delete input {
+    width: 80px;
+    background: rgb(220, 39, 39);
+    color: #fff;
+    border-radius: 20px;
+    font-size: 1.1em;
+}
+
+.editform {
+    width: 1100px;
+    margin: auto;
+    margin-top: 50px;
+    border: 1px solid #000;
+    border-radius: 8px;
+}
+
+.imgs {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.e-img {
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+}
+
+.upload {
+    text-align: center;
+}
+
+.upload input {
+    margin: 15px 0;
+}
+
+.editInputs {
+   text-align: center;
+}
+
+.editInputs p {
+    font-size: 1.2em;
+    font-weight: bold;
+
+}
+
+.editInputs input {
+    height: 30px;
+    width: 300px;
+    border-radius: 7px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.editInputs .submit {
+    width: 200px;
+    border-radius: 20px;
+}
+
+.title {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.editform h3 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.inserInputs {
+    text-align: center;
+}
+
+.small input {
+    width: 200px;
+    height: 20px;
+    border-radius: 10px;
+    margin: 10px 0;
+    
+}
+
+.small label {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.imgupload {
+    text-align: center;
+}
+
+.imgupload input {
+    margin: 15px 0;
+}
+
+.imgupload label {
+    font-weight: bold;
+}
+
+.post input {
+    width: 200px;
+    height: 20px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.post label {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.textarea {
+    border-radius: 10px;
+}
+
+.blList {
+    text-align: right;
+    margin: 20px 20px;
+}
+
+.blList a {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.ans {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.blList a:hover {
+    color: rgba(231, 136, 63);
+    animation-duration: 0.8s;
+}
+
+.blsearch {
+    text-align: center;
+}
+
+.blsearch input {
+    width: 200px;
+    height: 30px;
+    border-radius: 20px;
+}
+
+.blsearch .submit {
+    width: 100px;
+}
+
+.blsearch p {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.userList {
+    text-align: center;
+}
+
+.userList table {
+    margin: auto;
+    margin-top: 20px;
+}
+
+.userList table th {
+    width: 130px;
+}
+
+.blTable table{
+    margin: 30px auto;
+}
+
+.blTable table th {
+    width: 130px;
+}
+
+.noBL {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.top {
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.top a:hover {
+    color: rgba(231, 136, 63);
+    transition-duration: 0.8s;
+    border-bottom: 1px solid rgba(231, 136, 63);
+}
